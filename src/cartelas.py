@@ -1,3 +1,5 @@
+from constants import LOGGING, ERRORS, SELECTED
+from funcoes import learquivo, escrevearquivo, cleanup
 def listas():
     i = 0
     vazio = ''
@@ -17,8 +19,8 @@ def listas():
         for a in range(5):
             vet[i][a] = int(vet[i][a])
         i += 1
-
     arquivo.close()
+
     return vet
 
 def cartelas_show():
@@ -35,47 +37,54 @@ def cartelas_show():
         cartelatemp = cartelas[random]
         resultado[i] = cartelatemp
         random = randomold
+
     return resultado
 
-def maketable(elemento_inicial, lista, playerselect):
-    from funcoes import aleatorio, learquivo, escrevearquivo, cleanup
-    from constants import SELECTED, ERRORS
+def donotabela(elemento_inicial):
+            print(f"""
+***************************************************
+**         Você agora é dono da cartela {elemento_inicial}        **
+***************************************************
+    """)
+def maketable(elemento_inicial, lista, playerselect, backend_results):
+    from funcoes import aleatorio
     from prettytable import PrettyTable, DOUBLE_BORDER
     if elemento_inicial == "1":
-        playerselect[0] = SELECTED["player"]
-        playerselect[1] = SELECTED["notplayer"]
-        playerselect[2] = SELECTED["notplayer"]
-        playerselect[3] = SELECTED["notplayer"]
+        donotabela(elemento_inicial)
+        playerselect[0], playerselect[1] = SELECTED["player"], SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["notplayer"]
+
     elif elemento_inicial == "2":
-        playerselect[0] = SELECTED["notplayer"]
-        playerselect[1] = SELECTED["player"]
-        playerselect[2] = SELECTED["notplayer"]
-        playerselect[3] = SELECTED["notplayer"]
+        donotabela(elemento_inicial)
+        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["player"]
+        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["notplayer"]
+
     elif elemento_inicial == "3":
-        playerselect[0] = SELECTED["notplayer"]
-        playerselect[1] = SELECTED["notplayer"]
-        playerselect[2] = SELECTED["player"]
-        playerselect[3] = SELECTED["notplayer"]
+        donotabela(elemento_inicial)
+        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = SELECTED["player"], SELECTED["notplayer"]
+
     elif elemento_inicial == "4":
-        playerselect[0] = SELECTED["notplayer"]
-        playerselect[1] = SELECTED["notplayer"]
-        playerselect[2] = SELECTED["notplayer"]
-        playerselect[3] = SELECTED["player"]
+        donotabela(elemento_inicial)
+        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["player"]
 
     elif elemento_inicial == "":
         random = aleatorio(1, 50)
-        randomparaarquivo = random - 1
         print(f"""
 ***************************************************
 **         Número Sorteado: {random}                    **
 ***************************************************
-    """
-    )
+    """) if random < 10 else print(f"""
+***************************************************
+**         Número Sorteado: {random}                   **
+***************************************************
+    """)
 
         for i in range(4):
             if random in lista[i]:
                 elemento = (lista[i].index(random))
-                lista[i][elemento] = f'*{lista[i][elemento]}*'
+                lista[i][elemento] = f'[{lista[i][elemento]}]'
 
 
     elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
@@ -85,6 +94,7 @@ def maketable(elemento_inicial, lista, playerselect):
         playerselect[3] = SELECTED["notplayer"]
         print(f"""
     {ERRORS["invalid"]}
+    Valores possíveis: 1, 2, 3, 4, 5
     """)
     #Prettytable code
     x = PrettyTable()
@@ -99,15 +109,17 @@ def maketable(elemento_inicial, lista, playerselect):
     )
     x.set_style(DOUBLE_BORDER)
     #
-    print(lista)
     return x
 
 def TUI_principal():
     import os
     elemento_inicial = "1"
     playerselect = [0] * 4
+    backend_results = [0] * 4
+    for i in range(len(backend_results)):
+        playerselect[i] = [0] * 5
     lista = cartelas_show()
     while True:
         os.system("cls || clear")
-        elemento_inicial = input(maketable(elemento_inicial, lista, playerselect))
+        elemento_inicial = input(maketable(elemento_inicial, lista, playerselect, backend_results))
 TUI_principal()

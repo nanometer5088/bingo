@@ -19,3 +19,7 @@ SELECTED = {
 ERRORS = {
     "invalid": "Valor de entrada inválido"
 }
+LOGGING = {
+    "listas": "listas() executado com sucesso",
+    "cartelas_show": "cartelas_show() executado com sucesso"
+}

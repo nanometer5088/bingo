@@ -4,22 +4,22 @@ def aleatorio(x, y):
 
 def criaarquivo():
     try:
-        arquivo = open('temp.json', 'r', encoding='uft-8')
+        arquivo = open('temp.json', 'r', encoding='utf-8')
         arquivo.close()
     except FileNotFoundError:
         arquivo = open('temp.json', 'w')
         arquivo.close()
 
-def learquivo(linha):
+def learquivo(x,linha):
     criaarquivo()
-    arquivo = open('temp.json', 'r', encoding='uft-8')
+    arquivo = open(x, 'r', encoding='utf-8')
     x = arquivo.readlines(linha)
     arquivo.close()
     return x
 
-def escrevearquivo(input):
+def escrevearquivo(x,input):
     criaarquivo()
-    arquivo = open('temp.json', 'w')
+    arquivo = open(x, 'w')
     arquivo.write(input)
     arquivo.close()
 

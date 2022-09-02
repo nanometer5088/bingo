@@ -37,11 +37,10 @@ def cartelas_show():
         random = randomold
     return resultado
 
-def maketable(elemento_inicial, lista):
+def maketable(elemento_inicial, lista, playerselect):
     from funcoes import aleatorio, learquivo, escrevearquivo, cleanup
     from constants import SELECTED, ERRORS
     from prettytable import PrettyTable, DOUBLE_BORDER
-    playerselect = [0] * 4
     if elemento_inicial == "1":
         playerselect[0] = SELECTED["player"]
         playerselect[1] = SELECTED["notplayer"]
@@ -106,8 +105,9 @@ def maketable(elemento_inicial, lista):
 def TUI_principal():
     import os
     elemento_inicial = "1"
+    playerselect = [0] * 4
     lista = cartelas_show()
     while True:
         os.system("cls || clear")
-        elemento_inicial = input(maketable(elemento_inicial, lista))
+        elemento_inicial = input(maketable(elemento_inicial, lista, playerselect))
 TUI_principal()

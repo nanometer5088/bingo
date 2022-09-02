@@ -1,7 +1,3 @@
-def aleatorio(x, y):
-    import random
-    return random.randint(x, y)
-
 def listas():
     i = 0
     vazio = ''
@@ -26,6 +22,7 @@ def listas():
     return vet
 
 def cartelas_show():
+    from funcoes import aleatorio
     cartelas = listas()
     resultado = [0] * 4
     randomold = 0
@@ -40,57 +37,71 @@ def cartelas_show():
         random = randomold
     return resultado
 
-def TUI_principal(elemento_inicial):
+def maketable(elemento_inicial, lista):
+    from funcoes import aleatorio, learquivo, escrevearquivo, cleanup
     from constants import SELECTED, ERRORS
     from prettytable import PrettyTable, DOUBLE_BORDER
-    import os
-
     playerselect = [0] * 4
+    if elemento_inicial == "1":
+        playerselect[0] = SELECTED["player"]
+        playerselect[1] = SELECTED["notplayer"]
+        playerselect[2] = SELECTED["notplayer"]
+        playerselect[3] = SELECTED["notplayer"]
+    elif elemento_inicial == "2":
+        playerselect[0] = SELECTED["notplayer"]
+        playerselect[1] = SELECTED["player"]
+        playerselect[2] = SELECTED["notplayer"]
+        playerselect[3] = SELECTED["notplayer"]
+    elif elemento_inicial == "3":
+        playerselect[0] = SELECTED["notplayer"]
+        playerselect[1] = SELECTED["notplayer"]
+        playerselect[2] = SELECTED["player"]
+        playerselect[3] = SELECTED["notplayer"]
+    elif elemento_inicial == "4":
+        playerselect[0] = SELECTED["notplayer"]
+        playerselect[1] = SELECTED["notplayer"]
+        playerselect[2] = SELECTED["notplayer"]
+        playerselect[3] = SELECTED["player"]
+
+    elif elemento_inicial == "":
+        random = aleatorio(1, 5)
+        randomparaarquivo = random - 1
+        print(f"""
+***************************************************
+**         Número Sorteado: {random}                    **
+***************************************************
+    """
+    )
+
+    elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
+        playerselect[0] = SELECTED["notplayer"]
+        playerselect[1] = SELECTED["notplayer"]
+        playerselect[2] = SELECTED["notplayer"]
+        playerselect[3] = SELECTED["notplayer"]
+        print(f"""
+    {ERRORS["invalid"]}
+    """)
+    #Prettytable code
+    x = PrettyTable()
+    x.field_names = ["Dono", "1", "2", "3", "4", "5"]
+    x.add_rows(
+        [
+            [playerselect[0], lista[0][0], lista[0][1], lista[0][2], lista[0][3], lista[0][4]],
+            [playerselect[1], lista[1][0], lista[1][1], lista[1][2], lista[1][3], lista[1][4]],
+            [playerselect[2], lista[2][0], lista[2][1], lista[2][2], lista[2][3], lista[2][4]],
+            [playerselect[3], lista[3][0], lista[3][1], lista[3][2], lista[3][3], lista[3][4]],
+        ]
+    )
+    x.set_style(DOUBLE_BORDER)
+    #
+    print(lista)
+    return x
+
+def TUI_principal():
+    import os
+    elemento_inicial = "1"
     lista = cartelas_show()
     while True:
-        if int(elemento_inicial) == 1:
-            playerselect[0] = SELECTED["player"]
-            playerselect[1] = SELECTED["notplayer"]
-            playerselect[2] = SELECTED["notplayer"]
-            playerselect[3] = SELECTED["notplayer"]
-        if int(elemento_inicial) == 2:
-            playerselect[0] = SELECTED["notplayer"]
-            playerselect[1] = SELECTED["player"]
-            playerselect[2] = SELECTED["notplayer"]
-            playerselect[3] = SELECTED["notplayer"]
-        if int(elemento_inicial) == 3:
-            playerselect[0] = SELECTED["notplayer"]
-            playerselect[1] = SELECTED["notplayer"]
-            playerselect[2] = SELECTED["player"]
-            playerselect[3] = SELECTED["notplayer"]
-        if int(elemento_inicial) == 4:
-            playerselect[0] = SELECTED["notplayer"]
-            playerselect[1] = SELECTED["notplayer"]
-            playerselect[2] = SELECTED["notplayer"]
-            playerselect[3] = SELECTED["player"]
-
-
-        #Prettytable code
-        x = PrettyTable()
-        x.field_names = ["Dono", "1", "2", "3", "4", "5"]
-        x.add_rows(
-            [
-                [playerselect[0], lista[0][0], lista[0][1], lista[0][2], lista[0][3], lista[0][4]],
-                [playerselect[1], lista[1][0], lista[1][1], lista[1][2], lista[1][3], lista[1][4]],
-                [playerselect[2], lista[2][0], lista[2][1], lista[2][2], lista[2][3], lista[2][4]],
-                [playerselect[3], lista[3][0], lista[3][1], lista[3][2], lista[3][3], lista[3][4]],
-            ]
-        )
-        x.set_style(DOUBLE_BORDER)
-        #
-        
-        print(x)
-        elemento_inicial = input("\nSelecione outra cartela (2,3 ou 4) ou pressione ENTER para sortear\n")
-        if elemento_inicial == "1" or elemento_inicial == "2" or elemento_inicial == "3" or elemento_inicial == "4":
-            os.system("cls || clear")
-        else:
-            os.system("cls || clear")
-            print(f'{ERRORS["invalid"]}\nValores suportados são [1, 2, 3, 4, ENTER]\n')
-            elemento_inicial = 1
-
-TUI_principal(1)
+        os.system("cls || clear")
+        elemento_inicial = input(maketable(elemento_inicial, lista))
+TUI_principal()

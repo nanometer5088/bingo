@@ -64,7 +64,7 @@ def maketable(elemento_inicial, lista):
         playerselect[3] = SELECTED["player"]
 
     elif elemento_inicial == "":
-        random = aleatorio(1, 5)
+        random = aleatorio(1, 50)
         randomparaarquivo = random - 1
         print(f"""
 ***************************************************
@@ -72,6 +72,12 @@ def maketable(elemento_inicial, lista):
 ***************************************************
     """
     )
+
+        for i in range(4):
+            if random in lista[i]:
+                elemento = (lista[i].index(random))
+                lista[i][elemento] = f'*{lista[i][elemento]}*'
+
 
     elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
         playerselect[0] = SELECTED["notplayer"]

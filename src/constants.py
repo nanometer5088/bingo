@@ -9,6 +9,8 @@ START = {
 
     As bibliotecas podem ser instaladas posteriormente rodando o
                         arquivo 'setup.py'
+
+                   Pressione ENTER para continuar
     """,
     "libraries": """
     
@@ -16,8 +18,8 @@ START = {
         Pressione ENTER para instalar as bibliotecas necessárias
 
     (Note que será necessário abrir o programa novamente após a conclusão)
-    """}
-
+    """,
+    "librariesinstalled": "Dependências instaladas com sucesso.\nAbra o programa novamente\n"}
 INTRO = {
     "intro1": """
      No início do jogo, serão sorteadas 4 cartelas
@@ -117,7 +119,7 @@ INTRO = {
             Pressione ENTER para jogar!
             
     O tutorial pode ser feito novamente removendo
-             o arquivo config.json
+               o arquivo config.json
     """}
 
 SELECTED = {
@@ -133,7 +135,18 @@ WARNING = {
     
                           Pressione ENTER para assistir o tutorial.
     Alternativamente, pressione 1 para pular o tutorial (Recomendado para jogadores experientes)
-    """}
+    """,
+    "firsttimeskip": """
+                  Sem problemas, bom jogo!
+
+            O tutorial pode ser feito removendo
+                   o arquivo config.json
+
+                 Pressione ENTER para jogar!
+            """}
+GAME = {
+    "presskey": "Selecione outra cartela (1, 2, 3 ou 4) ou pressione ENTER para sortear "}
+
 
 SCOREBOARD = {
     "win": """

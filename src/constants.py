@@ -7,9 +7,10 @@ TUTORIAL = {
 
     Certifique-se que tenha as bibliotecas necessárias instaladas
 
-    As bibliotecas podem ser instaladas rodando o arquivo 'setup.py'
+    Pressione ENTER para instalar as bibliotecas necessárias
 
-    Pressione ENTER para prosseguir
+    As bibliotecas podem ser instaladas posteriormente rodando o
+    arquivo 'setup.py'
     """
     }
 SELECTED = {
@@ -23,3 +24,8 @@ LOGGING = {
     "listas": "listas() executado com sucesso",
     "cartelas_show": "cartelas_show() executado com sucesso"
 }
+SCOREBOARD = {
+    "win": """
+    Parabéns! Você venceu!!!
+    Entre o seu nome para constar no rol de vencedores:
+    """}

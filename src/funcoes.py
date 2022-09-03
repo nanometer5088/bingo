@@ -2,31 +2,31 @@ def aleatorio(x, y):
     import random
     return random.randint(x, y)
 
-def criaarquivo():
+def criaarquivo(x):
     try:
-        arquivo = open('temp.json', 'r', encoding='utf-8')
+        arquivo = open(x, 'r', encoding='utf-8')
         arquivo.close()
     except FileNotFoundError:
-        arquivo = open('temp.json', 'w')
+        arquivo = open(x, 'w')
         arquivo.close()
 
 def learquivo(x,linha):
-    criaarquivo()
+    criaarquivo(x)
     arquivo = open(x, 'r', encoding='utf-8')
     x = arquivo.readlines(linha)
     arquivo.close()
     return x
 
 def escrevearquivo(x,input):
-    criaarquivo()
+    criaarquivo(x)
     arquivo = open(x, 'w')
     arquivo.write(input)
     arquivo.close()
 
-def cleanup():
+def cleanup(x):
     import os
-    if os.path.exists("temp.json"):
-        os.remove("temp.json")
+    if os.path.exists(x):
+        os.remove(x)
     else:
         print("The file does not exist\n")
 

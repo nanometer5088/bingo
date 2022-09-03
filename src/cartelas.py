@@ -1,5 +1,5 @@
-from constants import LOGGING, ERRORS, SELECTED
-from funcoes import learquivo, escrevearquivo, cleanup
+from src.constants import LOGGING, ERRORS, SELECTED
+from src.funcoes import learquivo, escrevearquivo, cleanup
 def listas():
     i = 0
     vazio = ''
@@ -24,7 +24,7 @@ def listas():
     return vet
 
 def cartelas_show():
-    from funcoes import aleatorio
+    from src.funcoes import aleatorio
     cartelas = listas()
     resultado = [0] * 4
     randomold = 0
@@ -47,7 +47,7 @@ def donotabela(elemento_inicial):
 ***************************************************
     """)
 def maketable(elemento_inicial, lista, playerselect, backend_results):
-    from funcoes import aleatorio
+    from src.funcoes import aleatorio
     from prettytable import PrettyTable, DOUBLE_BORDER
     if elemento_inicial == "1":
         donotabela(elemento_inicial)
@@ -122,4 +122,3 @@ def TUI_principal():
     while True:
         os.system("cls || clear")
         elemento_inicial = input(maketable(elemento_inicial, lista, playerselect, backend_results))
-TUI_principal()

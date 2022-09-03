@@ -101,7 +101,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
         print(f"""
     {ERRORS["invalid"]}
-    Valores possíveis: 1, 2, 3, 4, 5
+    Valores possíveis: 1, 2, 3, 4
     """)
     #Prettytable code
     x = PrettyTable()

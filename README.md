@@ -1,2 +1,2 @@
 # WIP - Bingo
-** This software is not feature-complete nor is it functional at the moment**
+This software is feature-complete and functional at the moment

@@ -27,5 +27,3 @@ def inicio():
             tutorial()
         elif resposta == 1:
             print()
-        else:
-            print(ERRORS["invalid"],"Valores possíveis sáo: ENTER, 1")

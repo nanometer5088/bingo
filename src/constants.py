@@ -16,10 +16,6 @@ START = {
      No início do jogo, serão sorteadas 4 cartelas
     e o jogador será dono inicialmente da 1ª cartela.
 
-    ***************************************************
-    **         Você agora é dono da cartela 1        **
-    ***************************************************
-
     ╔══════╦═══╦════╦════╦════╦════╗
     ║ Dono ║ 1 ║ 2  ║ 3  ║ 4  ║ 5  ║
     ╠══════╬═══╬════╬════╬════╬════╣
@@ -92,4 +88,9 @@ SCOREBOARD = {
     "win": """
     Parabéns! Você venceu!!!
     Entre o seu nome para constar no rol de vencedores:
-    """}
+    """,
+    "loss": """
+    Outra cartela foi completada!
+    Melhor sorte da próxima vez!
+    """
+    }

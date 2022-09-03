@@ -1,5 +1,5 @@
-from src.constants import LOGGING, ERRORS, SELECTED
-from src.funcoes import learquivo, escrevearquivo, cleanup
+from src.constants import ERRORS, SELECTED
+from src.funcoes import learquivo, escrevearquivo, cleanup, aleatorio
 def listas():
     i = 0
     vazio = ''
@@ -24,7 +24,6 @@ def listas():
     return vet
 
 def cartelas_show():
-    from src.funcoes import aleatorio
     cartelas = listas()
     resultado = [0] * 4
     randomold = 0

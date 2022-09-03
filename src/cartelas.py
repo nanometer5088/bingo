@@ -1,5 +1,5 @@
 from src.constants import ERRORS, SELECTED, SCOREBOARD
-from src.funcoes import learquivo, escrevearquivo, cleanup, aleatorio
+from src.funcoes import aleatorio
 def listas():
     i = 0
     vazio = ''
@@ -58,6 +58,7 @@ def numerosorteado(random):
 def maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado):
     from src.funcoes import aleatorio
     from prettytable import PrettyTable, DOUBLE_BORDER, DEFAULT
+    from colr import color
 
     #Alterar a posição do jogador na tabela
     if elemento_inicial == "1":
@@ -85,7 +86,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
         for i in range(4):
             if random in lista[i]:
                 elemento = (lista[i].index(random))
-                lista[i][elemento] = f'-{lista[i][elemento]}-'
+                lista[i][elemento] = color(f'{lista[i][elemento]}', fore=(238, 77, 77))
                 backend_results[i][elemento] = 1
         for i in range(4):
             if backend_results[i] == modelovitoria:

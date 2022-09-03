@@ -1,19 +1,33 @@
-from src.constants import START, WARNING, ERRORS
 import os
-
 def tutorial():
+    from src.constants import INTRO
     os.system("cls || clear")
-    input(START["intro1"])
+    input(INTRO["intro1"])
     os.system("cls || clear")
-    input(START["intro2"])
+    input(INTRO["intro2"])
     os.system("cls || clear")
-    input(START["intro3"])
+    input(INTRO["intro3"])
+    os.system("cls || clear")
+    input(INTRO["intro4"])
+    os.system("cls || clear")
+    input(INTRO["intro5"])
+    os.system("cls || clear")
+    input(INTRO["introfinal"])
     os.system("cls || clear")
 
 def inicio():
+    from src.constants import WARNING, START
     os.system("cls || clear")
     x = input(START["intro"])
-    os.system("pip install -r requirements.txt")
+    try:
+        from prettytable import PrettyTable
+        from colr import color
+    except ModuleNotFoundError:
+        os.system("cls || clear")
+        input(START["libraries"])
+        os.system("pip install -r requirements.txt --user")
+        os.system("cls || clear")
+        return "instalado"
     try:
         config = open('config.json', 'r', encoding='utf-8')
         config.close()

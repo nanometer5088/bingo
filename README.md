@@ -1,5 +1,9 @@
-# WIP - Bingo
-Pending:
+# Bingo - Jogo
+Jogo de Bingo escrito em Python
 
-* Further testing edge-cases (and fixing them)
-* Better description
+Diferenciais:
+
+* Detecção e instalação de dependências, caso necessário.
+* Tutorial - apenas é mostrado na primeira vez
+* Flexível - Cartelas podem ser adicionadas ou substituídas, dado que seja seguido o modelo.
+* Não usa nenhuma função predefinida do python para trabalhar com listas (com exceção de len)

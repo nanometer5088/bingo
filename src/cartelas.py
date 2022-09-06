@@ -114,7 +114,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
 
     #Montagem e apresentação da tabela usando PrettyTable
     x = PrettyTable()
-    x.field_names = ["Dono", "1", "2", "3", "4", "5"]
+    x.field_names = ["Dono", "B", "I", "N", "G", "O"]
     x.add_rows(
         [
             [playerselect[0], lista[0][0], lista[0][1], lista[0][2], lista[0][3], lista[0][4]],
@@ -144,12 +144,14 @@ def TUI_principal():
     principal = ""
     playerselect = [0] * 4
     backend_results = [0] * 4
-    listaaleatoria = geralistaaleatoria()
     for i in range(len(backend_results)):
         backend_results[i] = [0] * 5
 
     #Busca as 4 cartelas aleatórias de cartelas_show() 
     lista = cartelas_show()
+
+    #Busca a lista de números à serem sorteados
+    listaaleatoria = geralistaaleatoria(50, 50)
 
     #Loop que roda maketable() até que haja algum status (Vitória ou derrota)
     i = -1

@@ -62,7 +62,7 @@ def numerosorteado(random):
 **         Número Sorteado: {color(random, fore=(76, 151, 237))}                   **
 ***************************************************
     """)
-def maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado):
+def maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random):
     from src.funcoes import aleatorio
     from prettytable import PrettyTable, DOUBLE_BORDER, DEFAULT
     from colr import color
@@ -88,7 +88,6 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
 
     #Sorteio dos números
     elif elemento_inicial == "":
-        random = aleatorio(1, 50)
         numerosorteado(random)
 
         #lógica de vitórias / derrotas
@@ -136,7 +135,8 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
 
 def TUI_principal():
     import os, datetime
-
+    from src.funcoes import geralistaaleatoria
+    
     #Determina alguns valores importantes para o funcionamento do programa
     resultado = ""
     modelovitoria = [1, 1, 1, 1, 1]
@@ -144,6 +144,7 @@ def TUI_principal():
     principal = ""
     playerselect = [0] * 4
     backend_results = [0] * 4
+    listaaleatoria = geralistaaleatoria()
     for i in range(len(backend_results)):
         backend_results[i] = [0] * 5
 
@@ -151,11 +152,14 @@ def TUI_principal():
     lista = cartelas_show()
 
     #Loop que roda maketable() até que haja algum status (Vitória ou derrota)
+    i = -1
     while principal == "":
         os.system("cls || clear")
-        principal = maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado)
+        random = listaaleatoria[i]
+        principal = maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random)
         elemento_inicial = input()
-
+        if elemento_inicial == "": 
+            i += 1
     #Vitória
     #Abre/Cria um arquivo de vencedores, parabeniza o jogador e insere o nome
     #do jogador e a data/hora da partida no arquivo. Conteúdos prévios do arquivo

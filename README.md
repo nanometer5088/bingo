@@ -1,4 +1,4 @@
-# Bingo - Jogo
+# Jogo - Bingo
 Jogo de Bingo escrito em Python
 
 Diferenciais:

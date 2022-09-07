@@ -1,17 +1,20 @@
 import os
 def idioma():
+    #Apresenta idiomas disponíveis ao usuário
     os.system("cls || clear")
-    x = int(input("""
+    x = input("""
     Selecione seu idioma
     Select your language
 
     1 = Português Brasileiro
     2 = English
-    """))
-    if x == 1:
+    """)
+    if x == "1":
         return "BR"
-    elif x == 2:
+    elif x == "2":
         return "EN"
+    else:
+        return ""
 
 def tutorial(locale):
     #Tutorial - Busca as informações do constants.py e apresenta na tela em

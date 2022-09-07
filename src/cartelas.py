@@ -1,4 +1,3 @@
-#from src.constants import ERRORS, SELECTED, SCOREBOARD, GAME
 from src.funcoes import aleatorio
 def listas():
 #Geração de listas a partir do arquivo de cartelas. Essas listas são separadas em
@@ -126,8 +125,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     #Determina se a entrada do usuário é inválida, e aje de acordo
     elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
         print(f"""
-    {locale.ERRORS["invalid"]}
-    Valores possíveis: [1, 2, 3, 4]
+{locale.ERRORS["invalid"]}[1, 2, 3, 4]
     """)
 
     #Montagem e apresentação da tabela usando PrettyTable

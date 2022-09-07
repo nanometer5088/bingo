@@ -123,7 +123,7 @@ SELECTED = {
     "notplayer": " "}
 
 ERRORS = {
-    "invalid": "Valor de entrada inválido",}
+    "invalid": "Valor de entrada inválido. Possíveis valores são: ",}
 
 WARNING = {
     "firstime": """

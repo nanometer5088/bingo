@@ -10,10 +10,10 @@ START = {
     """,
     "libraries": """
     
-        The program detected that dependencies are not installed
-             Press ENTER to install the necessary libraries
+        The program detected dependencies are not installed
+          Press ENTER to install the necessary libraries
 
-    (Note that you will need to open the program again after completion)
+     (You will need to open the program again after completion)
     """,
     "librariesinstalled": "Dependencies installed successfully.\nOpen the program again\n"}
 INTRO = {
@@ -123,11 +123,11 @@ SELECTED = {
     "notplayer": " "}
 
 ERRORS = {
-    "invalid": "Invalid input value",}
+    "invalid": "Invalid input value. Possible values are: ",}
 
 WARNING = {
     "firstime": """
-        The program has detected that this is the first time it is playing.
+            The program has detected this is the first time you're playing.
 
                           Press ENTER to watch the tutorial.
     Alternatively, press 1 to skip the tutorial (Recommended for experienced players)

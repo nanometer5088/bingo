@@ -1,10 +1,10 @@
 import random
 
-def aleatorio(min, max):
+def aleatorio(x, y):
 #Retorna um valor aleatório de tamanho a ser determinado
-    return random.randint(min, max)
+    return random.randint(x, y)
 
-def geralistaaleatoria(max, quantelementos):
+def geralistaaleatoria(x, y):
     #Gera uma lista de números à serem sorteados - Esses números são
     #únicos e aleatórios.
-    return random.sample(range(max), k=quantelementos)
+    return random.sample(range(x), k=y)

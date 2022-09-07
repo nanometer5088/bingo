@@ -1,16 +1,12 @@
 START = {
     "intro": """
                     Projeto: Bingo Lite
+                    
             Algoritmos e Programação II - Turma 02D
                   Segundo semestre - 2022
 
 
-    Certifique-se que tenha as bibliotecas necessárias instaladas
-
-    As bibliotecas podem ser instaladas posteriormente rodando o
-                        arquivo 'setup.py'
-
-                   Pressione ENTER para continuar
+                Pressione ENTER para continuar
     """,
     "libraries": """
     

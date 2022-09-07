@@ -1,4 +1,4 @@
-from src.constants import ERRORS, SELECTED, SCOREBOARD, GAME
+#from src.constants import ERRORS, SELECTED, SCOREBOARD, GAME
 from src.funcoes import aleatorio
 def listas():
 #Geração de listas a partir do arquivo de cartelas. Essas listas são separadas em
@@ -38,22 +38,30 @@ def cartelas_show():
         random = randomold
     return resultado
 
-def donotabela(elemento_inicial):
+def donotabela(elemento_inicial, language):
 #Apresenta na tela uma indicação de qual cartela o usuário alternou
 #Esse indicador é baseado no mostrado nas figuras da questão
     from colr import color
-    print(f"""
+    if language == 'BR':
+        print(f"""
 ***************************************************
 **         Você agora é dono da cartela {color(elemento_inicial, fore=(76, 151, 237))}        **
 ***************************************************
     """)
+    elif language == 'EN':
+        print(f"""
+***************************************************
+**             You now own the card {color(elemento_inicial, fore=(76, 151, 237))}            **
+***************************************************
+        """)
 
-def numerosorteado(random):
+def numerosorteado(random, language):
 #Apresenta na tela uma indicação de qual número foi sorteado, e
 #se alinha de acordo com o número de casas do número sorteado
 #Esse indicador é baseado no mostrado nas figuras da questão
     from colr import color
-    print(f"""
+    if language == 'BR':
+        print(f"""
 ***************************************************
 **         Número Sorteado: {color(random, fore=(76, 151, 237))}                    **
 ***************************************************
@@ -62,7 +70,17 @@ def numerosorteado(random):
 **         Número Sorteado: {color(random, fore=(76, 151, 237))}                   **
 ***************************************************
     """)
-def maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random):
+    elif language == 'EN':
+        print(f"""
+***************************************************
+**              Number drawn: {color(random, fore=(76, 151, 237))}                  **
+***************************************************
+    """) if random < 10 else print(f"""
+***************************************************
+**              Number drawn: {color(random, fore=(76, 151, 237))}                 **
+***************************************************
+        """)
+def maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random, locale, language):
     from src.funcoes import aleatorio
     from prettytable import PrettyTable, DOUBLE_BORDER, DEFAULT
     from colr import color
@@ -70,25 +88,25 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     #Alterar a cartela escolhida pelo jogador na tabela
     #A cartela do jogador é indicada pelo símbolo "■"
     if elemento_inicial == "1":
-        donotabela(elemento_inicial)
-        playerselect[0], playerselect[1] = SELECTED["player"], SELECTED["notplayer"]
-        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["notplayer"]
+        donotabela(elemento_inicial, language)
+        playerselect[0], playerselect[1] = locale.SELECTED["player"], locale.SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = locale.SELECTED["notplayer"], locale.SELECTED["notplayer"]
     elif elemento_inicial == "2":
-        donotabela(elemento_inicial)
-        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["player"]
-        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["notplayer"]
+        donotabela(elemento_inicial, language)
+        playerselect[0], playerselect[1] = locale.SELECTED["notplayer"], locale.SELECTED["player"]
+        playerselect[2], playerselect[3] = locale.SELECTED["notplayer"], locale.SELECTED["notplayer"]
     elif elemento_inicial == "3":
-        donotabela(elemento_inicial)
-        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["notplayer"]
-        playerselect[2], playerselect[3] = SELECTED["player"], SELECTED["notplayer"]
+        donotabela(elemento_inicial, language)
+        playerselect[0], playerselect[1] = locale.SELECTED["notplayer"], locale.SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = locale.SELECTED["player"], locale.SELECTED["notplayer"]
     elif elemento_inicial == "4":
-        donotabela(elemento_inicial)
-        playerselect[0], playerselect[1] = SELECTED["notplayer"], SELECTED["notplayer"]
-        playerselect[2], playerselect[3] = SELECTED["notplayer"], SELECTED["player"]
+        donotabela(elemento_inicial, language)
+        playerselect[0], playerselect[1] = locale.SELECTED["notplayer"], locale.SELECTED["notplayer"]
+        playerselect[2], playerselect[3] = locale.SELECTED["notplayer"], locale.SELECTED["player"]
 
     #Sorteio dos números
     elif elemento_inicial == "":
-        numerosorteado(random)
+        numerosorteado(random, language)
 
         #lógica de vitórias / derrotas
         for i in range(4):
@@ -99,7 +117,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
         for i in range(4):
             if backend_results[i] == modelovitoria:
                 for a in range(4):
-                    if playerselect[a] == SELECTED["player"]:
+                    if playerselect[a] == locale.SELECTED["player"]:
                         if i == a:
                             resultado = "vitoria"
                         else:
@@ -108,13 +126,13 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     #Determina se a entrada do usuário é inválida, e aje de acordo
     elif elemento_inicial != "1" or elemento_inicial != "2" or elemento_inicial != "3" or elemento_inicial != "4" or elemento_inicial != "":
         print(f"""
-    {ERRORS["invalid"]}
+    {locale.ERRORS["invalid"]}
     Valores possíveis: [1, 2, 3, 4]
     """)
 
     #Montagem e apresentação da tabela usando PrettyTable
     x = PrettyTable()
-    x.field_names = ["Dono", "B", "I", "N", "G", "O"]
+    x.field_names = ["■", "B", "I", "N", "G", "O"]
     x.add_rows(
         [
             [playerselect[0], lista[0][0], lista[0][1], lista[0][2], lista[0][3], lista[0][4]],
@@ -130,10 +148,10 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     print(x)
     
     #Indica ao jogador as opções de escolha disponíveis
-    print(GAME["presskey"])
+    print(locale.GAME["presskey"])
     return resultado
 
-def TUI_principal():
+def TUI_principal(locale, language):
     import os, datetime
     from src.funcoes import geralistaaleatoria
     
@@ -158,7 +176,7 @@ def TUI_principal():
     while principal == "":
         os.system("cls || clear")
         random = listaaleatoria[i]
-        principal = maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random)
+        principal = maketable(elemento_inicial, lista, playerselect, backend_results, modelovitoria, resultado, random, locale, language)
         elemento_inicial = input()
         if elemento_inicial == "": 
             i += 1
@@ -167,7 +185,7 @@ def TUI_principal():
     #do jogador e a data/hora da partida no arquivo. Conteúdos prévios do arquivo
     #são mantidos, caso hajam vencedores anteriores
     if principal == "vitoria":
-        nome = input(SCOREBOARD["win"])
+        nome = input(locale.SCOREBOARD["win"])
         arquivo = open('vencedores.txt', 'a')
         arquivo.write(f'{datetime.datetime.now()} - {nome}\n')
         arquivo.close()
@@ -175,4 +193,4 @@ def TUI_principal():
     #Derrota
     #Deseja ao jogador melhor sorte na próxima partida
     if principal == "derrota":
-        print(SCOREBOARD["loss"])
+        print(locale.SCOREBOARD["loss"])

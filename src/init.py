@@ -1,27 +1,39 @@
 import os
-def tutorial():
+def idioma():
+    os.system("cls || clear")
+    x = int(input("""
+    Selecione seu idioma
+    Select your language
+
+    1 = Português Brasileiro
+    2 = English
+    """))
+    if x == 1:
+        return "BR"
+    elif x == 2:
+        return "EN"
+
+def tutorial(locale):
     #Tutorial - Busca as informações do constants.py e apresenta na tela em
     #formato 'apresentação de slides'
-    from src.constants import INTRO
     os.system("cls || clear")
-    input(INTRO["intro1"])
+    input(locale.INTRO["intro1"])
     os.system("cls || clear")
-    input(INTRO["intro2"])
+    input(locale.INTRO["intro2"])
     os.system("cls || clear")
-    input(INTRO["intro3"])
+    input(locale.INTRO["intro3"])
     os.system("cls || clear")
-    input(INTRO["intro4"])
+    input(locale.INTRO["intro4"])
     os.system("cls || clear")
-    input(INTRO["intro5"])
+    input(locale.INTRO["intro5"])
     os.system("cls || clear")
-    input(INTRO["introfinal"])
+    input(locale.INTRO["introfinal"])
     os.system("cls || clear")
 
-def inicio():
+def inicio(locale):
     #Início do programa e indrodução para o usuário
-    from src.constants import WARNING, START
     os.system("cls || clear")
-    x = input(START["intro"])
+    x = input(locale.START["intro"])
     #Detecção e instalação das dependências - Caso não estejam instaladas,
     #a instalação ocorre e o programa é encerrado. O usuário é avisado para reiniciar
     #o programa ao finalizar
@@ -30,7 +42,7 @@ def inicio():
         from colr import color
     except ModuleNotFoundError:
         os.system("cls || clear")
-        input(START["libraries"])
+        input(locale.START["libraries"])
         os.system("pip install -r requirements.txt --user")
         os.system("cls || clear")
         return "instalado"
@@ -44,9 +56,9 @@ def inicio():
         config.write('Tutorial_Done=1')
         config.close()
         os.system("cls || clear")
-        resposta = input(WARNING["firstime"])
+        resposta = input(locale.WARNING["firstime"])
         if resposta == "":
-            tutorial()
+            tutorial(locale)
         elif resposta == "1":
             os.system("cls || clear")
-            input(WARNING["firsttimeskip"])
+            input(locale.WARNING["firsttimeskip"])

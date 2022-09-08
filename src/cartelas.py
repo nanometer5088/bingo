@@ -24,17 +24,14 @@ def listas():
 def cartelas_show():
 #Sorteia 4 cartelas dentre as 20 disponíveis
     cartelas = listas()
+    indices = [0] * 4
     resultado = [0] * 4
-    randomold = 0
     #Elimina as chances de vir duas cartelas idênticas em sequência
     for i in range(4):
-        random = aleatorio(0, (len(cartelas) - 1)) 
-        if random == randomold:
-            random = aleatorio(0, (len(cartelas) - 1))
-
-        cartelatemp = cartelas[random]
-        resultado[i] = cartelatemp
-        random = randomold
+        if i not in indices:
+            indices[i] = aleatorio(0, (len(cartelas) - 1))
+    for i in range(4):
+        resultado[i] = cartelas[indices[i]]
     return resultado
 
 def donotabela(elemento_inicial, language):
@@ -144,7 +141,7 @@ def maketable(elemento_inicial, lista, playerselect, backend_results, modelovito
     else:
         x.set_style(DEFAULT)
     print(x)
-    
+
     #Indica ao jogador as opções de escolha disponíveis
     print(locale.GAME["presskey"])
     return resultado

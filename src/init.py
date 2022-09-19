@@ -38,6 +38,18 @@ def inicio(locale):
     #Início do programa e indrodução para o usuário
     os.system("cls || clear")
     x = input(locale.START["intro"])
+
+    #Verifica por atualizações, e avisa o usuário caso encontre alguma
+    try:
+        import requests
+        data = requests.get("https://raw.githubusercontent.com/nanometer5088/bingo/main/VERSION")
+        version = open('VERSION', 'r', encoding='utf=8')
+        if version.readline().rstrip() < (data.text):
+            os.system("cls || clear")
+            input(locale.WARNING["newversion"])
+    except requests.exceptions.ConnectionError:
+        print()
+    
     #Detecção e instalação das dependências - Caso não estejam instaladas,
     #a instalação ocorre e o programa é encerrado. O usuário é avisado para reiniciar
     #o programa ao finalizar

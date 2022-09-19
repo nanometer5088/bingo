@@ -144,7 +144,16 @@ WARNING = {
                    the config.json file
 
                    Press ENTER to play!
-            """}
+            """,
+    "newversion": """
+                      There's a new version available!
+            Updates bring performance and gameplay improvements!
+                    
+                      Download the new version here: 
+        https://github.com/nanometer5088/bingo/archive/refs/heads/main.zip
+
+    Pressione ENTER para continuar
+    """}
 GAME = {
     "presskey": "Select another card (1, 2, 3 or 4) or press ENTER to draw "}
 

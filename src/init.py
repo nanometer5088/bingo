@@ -47,6 +47,7 @@ def inicio(locale):
         if version.readline().rstrip() < (data.text):
             os.system("cls || clear")
             input(locale.WARNING["newversion"])
+        version.close()
     except requests.exceptions.ConnectionError:
         print()
     
